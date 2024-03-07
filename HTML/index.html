@@ -5,40 +5,42 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Document</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/normalize/8.0.1/normalize.min.css" integrity="sha512-NhSC1YmyruXifcj/KFRWoC561YpHpc5Jtzgvbuzx5VozKpWvQ+4nXhPdFgmx8xqexRcpAglTj9sIBWINXa8x5w==" crossorigin="anonymous" referrerpolicy="no-referrer">
+    <link rel="stylesheet" href="estilos.css">
 </head>
 
 <body>
-    <nav>
-        <ul>
-            <li><a href="index.html">About</a></li>
-            <li><a href="about.html">Projects</a></li>
-            <li><a href="about.html">Skills</a></li>
-            <li><a href="contact.html">Contact</a></li>
+    <nav class="flex barra-navegacion">
+        <ul class="lista-opciones flex">
+            <li class="opt-lista"><a href="index.html">About</a></li>
+            <li class="opt-lista"><a href="about.html">Projects</a></li>
+            <li class="opt-lista"><a href="about.html">Skills</a></li>
+            <li class="opt-lista"><a href="contact.html">Contact</a></li>
         </ul>
-        <ul>
-            <li><a href="index.html">Blog</a></li>
-            <li><a href="about.html">Projects</a></li>
-            <li>
-                <button>Subscribe</button>
+        <ul class="lista-opciones flex">
+            <li class="opt-lista"><a href="index.html">Blog</a></li>
+            <li class="opt-lista"><a href="about.html">Projects</a></li>
+            <li class="opt-lista">
+                <button class="boton-nav">Subscribe</button>
             </li>
         </ul>
     </nav>
 
 
     <main>
-        <section>
-            <img src="https://via.placeholder.com/200x200" alt="">
-            <div>
-                <h1>Hola, soy Miguelito</h1>
-                <p>Soy un apasionado por la progrmacion y los videojuegos 😁</p>
-                <div>
-                    <span>@migelito123</span>
-                    <span>@migelito456</span>
+        <section class="seccion-1 flex">
+            <img src="https://via.placeholder.com/200x200" class="img-foto" alt="">
+            <div class="flex hijo-seccion-1">
+                <h1 class="texto-centrado">Hola, soy Miguelito</h1>
+                <p class="parrafo texto-centrado">Soy un apasionado por la programación y los videojuegos 😁</p>
+                <div class="flex caja-redes">
+                    <span class="redes-usuario">@migelito123</span>
+                    <span class="redes-usuario">@migelito456</span>
                 </div>
             </div>
         </section>
-        <section>
-            <article>
+        <section class="caja-lenguajes">
+            <article class="flex caja-lenguajes-hijos">
                 <div>
                     <h3>HTML</h3>
                     <p>Lorem, ipsum dolor sit amet consectetur adipisicing elit. Consectetur, repellendus.</p>
@@ -52,38 +54,38 @@
                     <p>Lorem, ipsum dolor sit amet consectetur adipisicing elit. Consectetur, repellendus.</p>
                 </div>
             </article>
-            <div>
-                <article>
-                    <div>
-                        <h3>HTML</h3>
-                        <p>Lorem, ipsum dolor sit amet consectetur adipisicing elit. Consectetur, repellendus.</p>
-                    </div>
-                    <div>
-                        <h3>HTML</h3>
-                        <p>Lorem, ipsum dolor sit amet consectetur adipisicing elit. Consectetur, repellendus.</p>
-                    </div>
-                    <div>
-                        <h3>HTML</h3>
-                        <p>Lorem, ipsum dolor sit amet consectetur adipisicing elit. Consectetur, repellendus.</p>
-                    </div>
-                </article>
-            </div>
+            <article class="flex caja-lenguajes-hijos">
+                <div>
+                    <h3>HTML</h3>
+                    <p>Lorem, ipsum dolor sit amet consectetur adipisicing elit. Consectetur, repellendus.</p>
+                </div>
+                <div>
+                    <h3>HTML</h3>
+                    <p>Lorem, ipsum dolor sit amet consectetur adipisicing elit. Consectetur, repellendus.</p>
+                </div>
+                <div>
+                    <h3>HTML</h3>
+                    <p>Lorem, ipsum dolor sit amet consectetur adipisicing elit. Consectetur, repellendus.</p>
+                </div>
+            </article>
         </section>
     </main>
 
 
-    <section>
-        <div>
-            <h2>Lorem ipsum dolor sit.</h2>
-            <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Dolores, harum.</p>
+    <section class="flex caja-formulario">
+        <div class="texto-formulario">
+            <h2>Lorem ipsum dolor.</h2>
+            <p class="parrafo">Lorem ipsum dolor sit amet consectetur adipisicing elit. Dolores, harum.</p>
         </div>
         <form>
             <div>
                 <input type="text" placeholder="Name">
                 <input type="text" placeholder="Email">
             </div>
-            <textarea cols="30" rows="10"></textarea>
             <div>
+                <textarea placeholder="Déjame tu mensaje"></textarea>
+            </div>
+            <div class="flex caja-boton-formulario">
                 <button>Send</button>
             </div>
         </form>

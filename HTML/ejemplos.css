@@ -1,0 +1,44 @@
+* Estilos universales * {
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+}
+
+
+/* * Estilos para clases de etiquetas */
+
+.barra-navegacion {
+    /* background-color: #f31111; */
+    background-image: url(https://ams3.digitaloceanspaces.com/graffica/2023/02/la-ola-de-cocacola.png);
+}
+
+img {}
+
+
+/* * Estilos para id de etiquetas */
+
+#lista-desordenada {
+    list-style: none;
+    margin: 0;
+    display: flex;
+    justify-content: end;
+    background-color: #f31111;
+    padding: 10px;
+    border-radius: 10px;
+    margin-bottom: 10px;
+}
+
+.item {
+    padding: 0 25px;
+}
+
+
+/* * Estilos para etiquetas en general */
+
+a {
+    color: #000;
+    text-decoration: none;
+}
+
+h1 {
+    font-size: 5em !important;
+    margin: 3em 4em !important;
+}
