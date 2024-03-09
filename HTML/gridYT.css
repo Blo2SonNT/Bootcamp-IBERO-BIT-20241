@@ -1,0 +1,17 @@
+.gridYT {
+    display: grid;
+    grid-template-columns: auto repeat(3, 1fr);
+}
+
+.nav {
+    grid-column: 2/5;
+}
+
+.sidebar {
+    grid-row: 1;
+    grid-column: 1/2;
+}
+
+.col1 {
+    grid-column: 2/5;
+}
