@@ -1,0 +1,99 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <section>
+        <div class="box1"></div>
+        <div class="box2"></div>
+        <div class="box3"></div>
+        <div class="box4"></div>
+    </section>
+
+    <style>
+        body {
+            transition: all .5s;
+        }
+        
+        section {
+            display: flex;
+        }
+        
+        .box1 {
+            width: 200px;
+            height: 200px;
+            background-color: #00ff40;
+        }
+        
+        .box2 {
+            width: 200px;
+            height: 200px;
+            background-color: #ef0bff;
+        }
+        
+        .box3 {
+            width: 200px;
+            height: 200px;
+            background-color: #305ad0;
+        }
+        
+        .box4 {
+            width: 200px;
+            height: 200px;
+            background-color: #ffcc00;
+        }
+        
+        @media (max-width: 768px) {
+            section {
+                display: flex;
+                flex-direction: column;
+            }
+            .box1 {
+                background-color: rgb(78, 223, 42);
+            }
+            .box2 {
+                display: none;
+            }
+            .box3 {
+                background-color: aqua;
+            }
+            .box4 {
+                background-color: rgb(27, 35, 94);
+            }
+        }
+        
+        @media (min-width: 800px) {
+            .box1 {
+                width: 400px;
+            }
+            .box2 {
+                background-color: #ef0bff;
+            }
+            .box3 {
+                background-color: #305ad0;
+            }
+            .box4 {
+                background-color: #ffcc00;
+            }
+        }
+        
+        @media (min-width: 769px) and (max-width: 799px) {
+            .box1 {
+                width: 50px;
+                background-color: #3e3e3e;
+            }
+            .box1:hover {
+                background-color: #dc143c;
+            }
+        }
+    </style>
+
+
+</body>
+
+</html>
