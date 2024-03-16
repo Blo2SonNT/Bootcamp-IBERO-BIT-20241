@@ -3,6 +3,7 @@
     --color-fucsia: #E8156B;
     --color-amarillo: #FFE800;
     --color-blanco: #fff;
+    --color-negro: #000;
 }
 
 * {
@@ -186,6 +187,12 @@
     text-decoration: underline;
 }
 
+.navbar-secundaria {
+    height: 45px;
+    background-color: #CCCCCC;
+    margin-bottom: 15px;
+}
+
 
 /** Grilla de categorias*/
 
@@ -211,4 +218,179 @@
 .nombre-categoria {
     text-align: center;
     font-weight: bold;
+}
+
+.banner-publicidad {
+    display: flex;
+    justify-content: center;
+}
+
+
+/* * Seccion de promociones especiales */
+
+.seccion-promos-especiales {
+    display: grid;
+    gap: 15px;
+    grid-template-areas: 'promoPeque1 promoGrande promoPeque3' 'promoPeque2 promoGrande promoPeque4';
+    padding: 0 120px 50px;
+}
+
+.item1 {
+    grid-area: promoPeque1;
+}
+
+.item2 {
+    grid-area: promoPeque2;
+}
+
+.item3 {
+    grid-area: promoPeque3;
+}
+
+.item4 {
+    grid-area: promoPeque4;
+}
+
+.item5 {
+    grid-area: promoGrande;
+}
+
+.caja-imagen-promo img {
+    width: 100%;
+    border-radius: 25px;
+}
+
+
+/* * Footer*/
+
+.seccion1-footer {
+    background-color: var(--color-negro);
+    display: flex;
+    justify-content: space-evenly;
+    padding: 30px 0;
+}
+
+.beneficios {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.beneficios img {
+    height: fit-content;
+    margin-right: 10px;
+}
+
+.texto-beneficio {
+    color: var(--color-blanco);
+    font-weight: 800;
+}
+
+.seccion-2-footer {
+    display: flex;
+    justify-content: space-evenly;
+    padding-bottom: 100px;
+    align-items: center;
+}
+
+[data-casilla="footer2Casilla1"] {
+    padding-top: 30px;
+}
+
+[data-casilla="footer2Casilla1"] p {
+    margin: 0;
+    font-size: .8rem;
+}
+
+[data-casilla="footer2Casilla1"] :nth-child(1) {
+    font-weight: 600;
+}
+
+[data-casilla="footer2Casilla1"] :nth-child(2) {
+    margin: 8px 0 20px;
+}
+
+[data-casilla="footer2Casilla1"] :nth-child(3) {
+    background-color: var(--color-negro);
+    color: var(--color-blanco);
+    border: none;
+    border-radius: 8px;
+    padding: 15px 20px;
+    font-weight: bold;
+}
+
+.texto-descargar-app,
+.texto-siguenos,
+.texto-compras {
+    font-weight: bold;
+    font-size: .8rem;
+}
+
+.caja-2-footer2 {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.linea-vertical {
+    height: 65px;
+    width: 1px;
+    background-color: #6e6e6e;
+    margin: 0 15px;
+}
+
+.palabra-app {
+    font-weight: bold;
+    text-transform: capitalize;
+    font-size: 1.3rem;
+    margin-right: 30px;
+}
+
+.img-admiracion {
+    height: fit-content;
+}
+
+.caja-iconos-redes {
+    display: flex;
+}
+
+.caja-logos-pasarelas-pago {
+    display: flex;
+}
+
+.caja-logos-pasarelas-pago img {
+    height: fit-content;
+    margin: 0 15px 0 0;
+}
+
+@media (max-width: 992px) {
+    .grilla-categorias {
+        grid-template-columns: repeat(5, 1fr);
+        padding: 50px 70px;
+    }
+    .seccion-promos-especiales {
+        grid-template-areas: 'promoGrande promoGrande' 'promoPeque1 promoPeque3' 'promoPeque2 promoPeque4' !important;
+        padding: 0 50px 50px;
+    }
+}
+
+@media (max-width: 768px) {
+    .grilla-categorias {
+        grid-template-columns: repeat(4, 1fr);
+        padding: 50px 70px;
+    }
+    .seccion-promos-especiales {
+        grid-template-areas: 'promoGrande promoGrande' 'promoPeque1 promoPeque3' 'promoPeque2 promoPeque4' !important;
+        padding: 0 50px 50px;
+    }
+}
+
+@media (min-width: 992px) and (max-width: 1500px) {
+    .seccion-promos-especiales {
+        grid-template-areas: 'promoPeque1 promoPeque3' 'promoPeque2 promoPeque4' !important;
+        padding: 0 50px 50px;
+    }
+    .item5 {
+        display: none;
+    }
 }
