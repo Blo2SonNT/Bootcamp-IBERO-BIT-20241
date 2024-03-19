@@ -1,0 +1,44 @@
+@import url('https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap');
+:root {
+    --color-menu-lateral: #5825CC;
+    --color-morado: #1f0a4d;
+    --fondo-pagina: #4618AC;
+    --color-morado-mas-negro: #2c0e6c;
+}
+
+body {
+    background-color: var(--fondo-pagina);
+    color: white;
+}
+
+* {
+    font-family: "Poppins", sans-serif;
+}
+
+.fw-bold-eneba {
+    font-weight: 700;
+    font-style: normal;
+}
+
+.menu {
+    background: var(--color-menu-lateral);
+}
+
+.caja-precio input {
+    width: 70px;
+    background-color: var(--color-morado);
+}
+
+.lista-filtros li {
+    background-color: var(--color-morado-mas-negro);
+}
+
+.btn-borrar {
+    background-color: transparent !important;
+}
+
+@media (min-width: 768px) and (max-width: 992px) {
+    .card-juego {
+        flex-direction: column !important;
+    }
+}
