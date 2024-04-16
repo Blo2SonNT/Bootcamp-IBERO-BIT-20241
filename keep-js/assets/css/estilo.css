@@ -1,0 +1,10 @@
+.texto-centrado {
+    font-size: 2rem;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    color: aqua;
+}
+
+.texto-nota {
+    color: #fff;
+    font-size: 1.5rem;
+}
