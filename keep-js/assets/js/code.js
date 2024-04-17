@@ -1,30 +1,56 @@
 let divNota = document.querySelector("#seccion-notas")
 
+let contador
+
+if (localStorage.getItem('contador_notas') == null) {
+    contador = 1
+} else {
+    contador = localStorage.getItem('contador_notas')
+}
+
+mostrar_notas(contador)
+console.log('contador:', contador)
+
 let formulario = document.querySelector('#form-notas');
 formulario.addEventListener('submit', function(evento) {
+
     evento.preventDefault();
     /*
         AND ( && )
         OR ( || ) 
     */
     if (evento.target.txtTitulo.value == '' || evento.target.textoNota.value == '') {
-        alert('Debe completar todos los campos')
+        Swal.fire({
+            title: "Diligencie todos los campos",
+            text: "No sea bestia",
+            icon: "error",
+            color: "#fff",
+            iconColor: "#ff0f0f",
+            confirmButtonText: "Aceptar 🥲",
+            html: "<b>Por favor diligencie todos los campos</b>",
+            confirmButtonColor: "#337a2d",
+            customClass: {
+                popup: 'alerta_error' // Clase CSS personalizada para el contenido de la alerta
+            },
+            backdrop: `
+                        rgba(214, 214, 1, 0.63)
+                        url("https://i.pinimg.com/originals/e5/93/ab/e593ab0589d5f1b389e4dfbcce2bce20.gif")
+                        left top
+                        no-repeat
+                    `,
+            background: "#fff url(https://oyedigital.mx/wp-content/uploads/2022/03/nota_mejoresmemes_mar22.jpg)",
+        });
         return
     }
 
     let titulo = evento.target.txtTitulo.value
     let nota = evento.target.textoNota.value
 
-    divNota.innerHTML += `
-        <div class="col">
-            <div class="card">
-                <div class="card-body">
-                    <h5 class="card-title">${titulo}</h5>
-                    <p class="card-text">${nota}</p>
-                </div>
-            </div>
-        </div>
-    `
+    localStorage.setItem(`titulo_nota_${contador}`, titulo)
+    localStorage.setItem(`texto_nota_${contador}`, nota)
+    contador++
+    localStorage.setItem('contador_notas', contador)
+    mostrar_notas(contador)
     evento.target.reset()
 })
 
@@ -34,6 +60,22 @@ botonBorrar.addEventListener('click', function() {
         divNota.innerHTML = ''
     }
 })
+
+function mostrar_notas(contador_de_notas) {
+    divNota.innerHTML = ''
+    for (let x = 1; x < contador_de_notas; x++) {
+        divNota.innerHTML += `
+                <div class="col">
+                    <div class="card">
+                        <div class="card-body">
+                            <h5 class="card-title">${localStorage.getItem(`titulo_nota_${x}`)}</h5>
+                            <p class="card-text">${localStorage.getItem(`texto_nota_${x}`)}</p>
+                        </div>
+                    </div>
+                </div>
+            `
+            }
+}
 
 
 // let persona = {
