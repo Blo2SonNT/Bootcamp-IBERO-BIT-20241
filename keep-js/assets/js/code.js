@@ -1,3 +1,5 @@
+//cSpell:disable
+
 let divNota = document.querySelector("#seccion-notas")
 
 let contador
@@ -9,6 +11,7 @@ if (localStorage.getItem('contador_notas') == null) {
 }
 
 mostrar_notas(contador)
+asignar_evento_delete()
 console.log('contador:', contador)
 
 let formulario = document.querySelector('#form-notas');
@@ -64,19 +67,52 @@ botonBorrar.addEventListener('click', function() {
 function mostrar_notas(contador_de_notas) {
     divNota.innerHTML = ''
     for (let x = 1; x < contador_de_notas; x++) {
-        divNota.innerHTML += `
+
+        let titulo_nota = localStorage.getItem(`titulo_nota_${x}`)
+        let texto_nota = localStorage.getItem(`texto_nota_${x}`)
+
+        if (titulo_nota != null && texto_nota != null) {
+            divNota.innerHTML += `
                 <div class="col">
                     <div class="card">
                         <div class="card-body">
-                            <h5 class="card-title">${localStorage.getItem(`titulo_nota_${x}`)}</h5>
-                            <p class="card-text">${localStorage.getItem(`texto_nota_${x}`)}</p>
+                            <h5 class="card-title">${titulo_nota}</h5>
+                            <p class="card-text">${texto_nota}</p>
+                            <div class="d-flex justify-content-center align-items-center">
+                                <i class="bg-danger text-white py-2 px-3 rounded fa-solid fa-trash" data-nota="${x}"></i>
+                            </div>
                         </div>
                     </div>
                 </div>
             `
-            }
+        }
+    }
 }
 
+
+function asignar_evento_delete() {
+    let botones_borrar = document.querySelectorAll('[data-nota]')
+    console.log(botones_borrar)
+        // for (let gamin = 0; gamin < botones_borrar.length; gamin++) {
+        //     console.log(botones_borrar[gamin])
+        // }
+
+    botones_borrar.forEach((boton) => {
+        boton.addEventListener('click', function() {
+            // let nota_getAtt = boton.getAttribute('data-nota')
+            // console.log('nota_getAtt:', nota_getAtt)
+            let id_nota = boton.dataset.nota
+            localStorage.removeItem(`titulo_nota_${id_nota}`)
+            localStorage.removeItem(`texto_nota_${id_nota}`)
+            mostrar_notas(contador)
+            asignar_evento_delete()
+        })
+    });
+
+}
+
+
+// data-nota-peye
 
 // let persona = {
 //     nombre: "Juan",
