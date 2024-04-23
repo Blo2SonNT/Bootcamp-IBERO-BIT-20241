@@ -12,7 +12,7 @@ if (localStorage.getItem('contador_notas') == null) {
 
 mostrar_notas(contador)
 asignar_evento_delete()
-console.log('contador:', contador)
+asignar_evento_editar()
 
 let formulario = document.querySelector('#form-notas');
 formulario.addEventListener('submit', function(evento) {
@@ -79,7 +79,8 @@ function mostrar_notas(contador_de_notas) {
                             <h5 class="card-title">${titulo_nota}</h5>
                             <p class="card-text">${texto_nota}</p>
                             <div class="d-flex justify-content-center align-items-center">
-                                <i class="bg-danger text-white py-2 px-3 rounded fa-solid fa-trash" data-nota="${x}"></i>
+                                <i class="bg-primary text-white py-2 px-3 mx-2 rounded fa-solid fa-pencil" data-nota-editar="${x}"></i>
+                                <i class="bg-danger text-white py-2 px-3 mx-2 rounded fa-solid fa-trash" data-nota-eliminar="${x}"></i>
                             </div>
                         </div>
                     </div>
@@ -91,24 +92,78 @@ function mostrar_notas(contador_de_notas) {
 
 
 function asignar_evento_delete() {
-    let botones_borrar = document.querySelectorAll('[data-nota]')
-    console.log(botones_borrar)
+    let botones_borrar = document.querySelectorAll('[data-nota-eliminar]')
         // for (let gamin = 0; gamin < botones_borrar.length; gamin++) {
         //     console.log(botones_borrar[gamin])
         // }
 
     botones_borrar.forEach((boton) => {
         boton.addEventListener('click', function() {
-            // let nota_getAtt = boton.getAttribute('data-nota')
+            // let nota_getAtt = boton.getAttribute('data-nota-eliminar')
             // console.log('nota_getAtt:', nota_getAtt)
-            let id_nota = boton.dataset.nota
+            let id_nota = boton.dataset.notaEliminar
             localStorage.removeItem(`titulo_nota_${id_nota}`)
             localStorage.removeItem(`texto_nota_${id_nota}`)
             mostrar_notas(contador)
             asignar_evento_delete()
+            asignar_evento_editar()
         })
     });
 
+}
+
+
+
+function asignar_evento_editar() {
+    let botones_editar = document.querySelectorAll('[data-nota-editar]')
+    let divBotones = document.querySelector('#div-botones-formulario')
+    botones_editar.forEach(boton => {
+        boton.addEventListener('click', function() {
+            // let id_nota = boton.getAttribute('data-nota-eliminar')
+            let id_nota = boton.dataset.notaEditar
+            divBotones.innerHTML = `
+                <button type="button" class="btn btn-primary" id="btn-guardar-cambios">Guardar cambios</button>
+                <button type="button" class="btn btn-danger" id="btn-cancelar">Cancelar</button>
+            `
+            document.querySelector("#titulo-pagina").innerHTML = "Editar nota"
+            let titulo_nota = localStorage.getItem(`titulo_nota_${id_nota}`)
+            document.querySelector('#txtTitulo').value = titulo_nota
+
+            let texto_nota = localStorage.getItem(`texto_nota_${id_nota}`)
+            document.querySelector('#textoNota').value = texto_nota
+            asignar_evento_btn_edicion(id_nota)
+        })
+    });
+}
+
+
+function asignar_evento_btn_edicion(id) {
+
+    let btnGuardarCambios = document.querySelector('#btn-guardar-cambios')
+    btnGuardarCambios.addEventListener('click', function() {
+        let titulo = document.querySelector('#txtTitulo').value
+        let texto = document.querySelector('#textoNota').value
+        localStorage.setItem(`titulo_nota_${id}`, titulo)
+        localStorage.setItem(`texto_nota_${id}`, texto)
+        mostrar_notas(contador)
+        asignar_evento_delete()
+        asignar_evento_editar()
+        restaurar_formulario()
+    })
+
+    let btnCancelar = document.querySelector('#btn-cancelar')
+    btnCancelar.addEventListener('click', function() {
+        restaurar_formulario()
+    })
+}
+
+
+function restaurar_formulario() {
+    document.querySelector("#titulo-pagina").innerHTML = "Crear nota"
+    document.querySelector("#div-botones-formulario").innerHTML = `
+            <button type="submit" class="btn btn-warning fw-bold mt-3 text-uppercase fs-3" id="btn-guardar-nota">Agregar</button>
+        `
+    document.querySelector('#form-notas').reset()
 }
 
 

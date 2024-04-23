@@ -18,14 +18,14 @@
     </div>
     <section class="container mt-5">
         <h1 class="pt-5 text-center text-white">Notas Peyes</h1>
-        <h2 class="text-center text-white my-4">Agregar nota</h2>
+        <h2 class="text-center text-white my-4" id="titulo-pagina">Agregar nota</h2>
         <form class="row" id="form-notas">
             <div class="col-6 offset-3">
                 <input type="text" id="txtTitulo" class="form-control mb-3" placeholder="Titulo">
                 <textarea id="textoNota" cols="30" rows="5" class="form-control" placeholder="Nota..."></textarea>
             </div>
-            <div class="col-6 offset-3 justify-content-end d-flex">
-                <button type="submit" class="btn btn-warning fw-bold mt-3 text-uppercase fs-3">Agregar</button>
+            <div class="col-6 offset-3 justify-content-end d-flex" id="div-botones-formulario">
+                <button type="submit" class="btn btn-warning fw-bold mt-3 text-uppercase fs-3" id="btn-guardar-nota">Agregar</button>
             </div>
         </form>
         <section class="row row-cols-1 row-cols-md-4 g-4 mt-4" id="seccion-notas"></section>
