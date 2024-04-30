@@ -1,0 +1,61 @@
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap');
+:root {
+    --color1: #a747f1;
+    --color2: #fff;
+    --color3: #C53FC7;
+}
+
+* {
+    font-family: 'Poppins', sans-serif;
+}
+
+.bannerPublicidad {
+    background-image: url(../img/banner.webp);
+    background-size: cover;
+    height: 40px;
+}
+
+.imgProducto {
+    width: 100px;
+}
+
+.botonQuitar {
+    position: absolute;
+    left: 96.3%;
+    top: 5px;
+}
+
+@media (max-width: 992px) {
+    .botonQuitar {
+        position: absolute;
+        left: 95%;
+    }
+}
+
+@media (max-width: 768px) {
+    .botonQuitar {
+        position: absolute;
+        left: 93%;
+    }
+}
+
+.botonControl {
+    background-color: #ececec;
+    border-radius: 50%;
+    transition: .3s all;
+}
+
+.botonControl:hover {
+    background-color: var(--color3);
+    color: var(--color2);
+}
+
+.btnPagar {
+    background-color: var(--color1);
+    color: var(--color2);
+}
+
+.btnPagar:hover {
+    background-color: var(--color3);
+    color: var(--color2);
+}

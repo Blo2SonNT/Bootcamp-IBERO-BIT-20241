@@ -1,0 +1,110 @@
+<!doctype html>
+<html lang="es">
+
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Resumen de compra</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-T3c6CoIi6uLrA9TneNEoa7RxnatzjcDSCmG1MXxSR1GAsXEV/Dwwykc2MPK8M2HN" crossorigin="anonymous">
+    <link rel="stylesheet" href="assets/css/estilo.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css" integrity="sha512-DTOQO9RWCH3ppGqcWaEA1BIZOC6xxalwEsw9c2QQeAIftl+Vegovlnee1c9QX4TctnWMn13TZye+giMm8e2LwA==" crossorigin="anonymous" referrerpolicy="no-referrer">
+</head>
+
+<body>
+    <div class="bannerPublicidad d-flex justify-content-center text-white align-items-center">
+        <div id="cuentaRegresiva" class="mx-4 fw-bold">2 días: 18 horas: 00 minutos: 30 segundos</div>
+        Gran promoción por navidad <a href="#" class="fw-bold text-white ps-2">Obtener oferta</a>
+    </div>
+    <div class="container my-5">
+        <div class="row">
+            <h3 class="fw-bold">Resumen de tu compra</h3>
+            <hr>
+            <div class="col-12 col-lg-8">
+                <section id="lista-productos"></section>
+                <div class="d-flex justify-content-end">
+                    <button class="btn btn-danger px-5 py-3 fw-bold" id="btn-borrar-carro">Eliminar carrito</button>
+                </div>
+            </div>
+            <div class="col-12 col-lg-4">
+                <div class="card mt-4">
+                    <ul class="list-group list-group-flush">
+                        <li class="list-group-item d-flex justify-content-center align-items-start py-3 flex-column">
+                            <h6 class="m-0 d-flex justify-content-between w-100 px-4">
+                                <span class="fw-bold">Total de productos:</span><span>4</span>
+                            </h6>
+                        </li>
+                        <li class="list-group-item d-flex justify-content-center align-items-start py-3 flex-column">
+                            <h6 class="m-0 d-flex justify-content-between w-100 px-4">
+                                <span class="fw-bold">Descuentos:</span><span>$0</span>
+                            </h6>
+                        </li>
+                        <li class="list-group-item d-flex justify-content-center align-items-start py-3 px-5 flex-column">
+                            <h6 class="m-0 pb-3 fw-bold">
+                                Método de envió
+                            </h6>
+                            <div class="form-check">
+                                <input class="form-check-input" type="radio" name="radioMetodoEnvio" id="envioNormal">
+                                <label class="form-check-label" for="envioNormal">
+                                    Envió normal - 2 a 5 Dias hábiles
+                                </label>
+                            </div>
+                            <div class="form-check">
+                                <input class="form-check-input" type="radio" name="radioMetodoEnvio" id="envioPrioritario" checked>
+                                <label class="form-check-label" for="envioPrioritario">
+                                    Envió prioritario - 24 horas ($5.000)
+                                </label>
+                            </div>
+                        </li>
+                        <li class="list-group-item d-flex justify-content-center align-items-start py-3 flex-column">
+                            <h3 class="m-0 d-flex justify-content-between w-100">
+                                <span>Total a pagar:</span>
+                                <span>$ 687.000</span>
+                            </h3>
+                        </li>
+
+                    </ul>
+
+
+                </div>
+                <div class="card mt-3 p-4">
+                    <h5 class="mb-4">Método de pago</h5>
+                    <ul class="list-group list-group-flush">
+                        <li class="list-group-item d-flex justify-content-center align-items-start flex-column p-0">
+                            <div class="form-check pb-2 pt-4">
+                                <input class="form-check-input" type="radio" name="radioMetodoPago" id="pagoContraentrega">
+                                <label class="form-check-label h5" for="pagoContraentrega">
+                                    <div class="h5">Pago contraentrega</div>
+                                    <i class="fa-solid fa-motorcycle"></i>
+                                </label>
+                            </div>
+                            <div class="form-check py-2">
+                                <input class="form-check-input" type="radio" name="radioMetodoPago" id="pagoTransferencia">
+                                <label class="form-check-label h5" for="pagoTransferencia">
+                                    <div class="h5">Transferencia bancaria</div>
+                                    <i class="fa-solid fa-building-columns"></i>
+                                </label>
+                            </div>
+                            <div class="form-check py-2">
+                                <input class="form-check-input" type="radio" name="radioMetodoPago" id="pagoTC">
+                                <label class="form-check-label" for="pagoTC">
+                                    <div class="d-flex justify-content-between flex-column">
+                                        <div class="h5">Tarjeta de crédito</div>
+                                        <img class="mt-2" src="assets/img/metodos.webp" alt="">
+                                    </div>
+                                </label>
+                            </div>
+                        </li>
+                    </ul>
+                </div>
+                <button class="btn btnPagar mt-3 fw-bold w-100 py-3">Proceder al pago</button>
+            </div>
+        </div>
+    </div>
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-C6RzsynM9kWDrMNeT87bh95OGNyZPhcTNXj1NW7RuBCsyN/o0jlpcV8Qyq46cDfL" crossorigin="anonymous"></script>
+    <script src="assets/js/cuentaRegresiva.js"></script>
+    <script src="assets/js/code.js"></script>
+    <script src="assets/js/resumen-compra.js"></script>
+</body>
+
+</html>
