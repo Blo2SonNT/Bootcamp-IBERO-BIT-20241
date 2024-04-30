@@ -120,9 +120,9 @@ let estudiantes_funcional = [
     { id: 4, nombre: "Sergio", edad: 18 }
 ]
 
-console.log(estudiantes_funcional.find(persona => persona.id == 1))
-console.log(estudiantes_funcional.findIndex(persona => persona.nombre == "Sergio"))
-console.log(estudiantes_funcional.filter(persona => persona.nombre == "Sergio"))
+console.log("find: ", estudiantes_funcional.find(persona => persona.id == 1))
+console.log("findIndex: ", estudiantes_funcional.findIndex(persona => persona.nombre == "Sergio"))
+console.log("filter: ", estudiantes_funcional.filter(persona => persona.nombre == "Sergio"))
 
 estudiantes_funcional.forEach((element, posicion) => {
     if (element.nombre == "Sergio") {
