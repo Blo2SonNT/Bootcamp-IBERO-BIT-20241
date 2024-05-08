@@ -1,0 +1,21 @@
+:root {
+    --size-punto: 10px;
+}
+
+.circulo_estado {
+    width: var(--size-punto);
+    height: var(--size-punto);
+    border-radius: 50%;
+}
+
+.vivo {
+    background-color: #008000;
+}
+
+.muerto {
+    background-color: #ff0000;
+}
+
+.desconocido {
+    background-color: #808080;
+}
