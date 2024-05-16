@@ -1,0 +1,27 @@
+{
+    "base_productos": [{
+            "id": 15,
+            "nombre": "Control inalámbrico para PC",
+            "precio": 210000,
+            "imagen": "assets/img/producto1.webp"
+        },
+        {
+            "id": 23,
+            "nombre": "Teclado retroiluminado RGB multicolor",
+            "precio": 381000,
+            "imagen": "assets/img/producto2.webp"
+        },
+        {
+            "id": 11,
+            "nombre": "Mouse ergonomico",
+            "precio": 90000,
+            "imagen": "assets/img/producto3.webp"
+        },
+        {
+            "id": 403,
+            "nombre": "Auriculares inalámbricos",
+            "precio": 150000,
+            "imagen": "https://via.placeholder.com/100x100"
+        }
+    ]
+}
