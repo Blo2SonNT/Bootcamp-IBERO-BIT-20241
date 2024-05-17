@@ -43,6 +43,8 @@
     background-color: #ececec;
     border-radius: 50%;
     transition: .3s all;
+    width: 40px;
+    height: 40px;
 }
 
 .botonControl:hover {
