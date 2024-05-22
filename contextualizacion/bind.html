@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
+</head>
+
+<body>
+
+    <section id="info"></section>
+
+    <script>
+        //cSpell:disable
+
+        // Bind es un método que tienen todas las funciones en JavaScript y que nos permite llamar a una función que pertenece a otro objeto. (espejo)
+
+        let personaje3 = {
+            nombre: 'Yumeko',
+            img: 'https://i.pinimg.com/originals/29/fe/80/29fe8096fc00ba97d58aa2dcdf3a35f2.jpg'
+        }
+        let personaje2 = {
+            nombre: 'Riuk',
+            img: 'https://e0.pxfuel.com/wallpapers/101/712/desktop-wallpaper-riuk-death-note-anime-dark.jpg'
+        }
+
+
+        function mostarInfo(serie, capitulos) {
+            return `
+                <div class="card" style="width: 18rem;">
+                    <img src="${this.img}" class="card-img-top" alt="...">
+                    <div class="card-body">
+                        <h5 class="card-title">${this.nombre}</h5>
+                        <p class="card-text">${serie}</p>
+                        <p class="card-text">Total de capitulos: ${capitulos}</p>
+                    </div>
+                </div>
+            `
+        }
+
+        let seccion = document.querySelector("#info")
+
+        let llamadaBind = mostarInfo.bind(personaje3);
+        seccion.innerHTML += llamadaBind('Kakegurui', 24);
+
+        let llamadaBind2 = mostarInfo.bind(personaje2);
+        seccion.innerHTML += llamadaBind2('Death Note', 37);
+    </script>
+
+
+</body>
+
+</html>

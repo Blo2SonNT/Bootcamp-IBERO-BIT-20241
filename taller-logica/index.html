@@ -1,0 +1,232 @@
+<!doctype html>
+<html lang="es">
+
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Taller de lógica</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
+</head>
+
+<body>
+    <section class="container">
+        <div class="row">
+            <div class="col-4 d-flex justify-content-center align-items-center flex-column">
+                <h4>Punto 1 - Sumatoria</h4>
+                <form id="punto1">
+                    <input class="form-control w-100 border border-2" type="text" placeholder="Ingrese un numero" id="valorSumatoria">
+                    <button type="submit" class="btn btn-dark">Calcular</button>
+                </form>
+                <div id="resultadoPunto1"></div>
+            </div>
+            <script>
+                document.querySelector('#punto1').addEventListener('submit', function(e) {
+                    e.preventDefault()
+                    let numero = parseInt(e.target.valorSumatoria.value)
+                    let sumatoria = 0
+                    for (let i = 1; i <= numero; i++) {
+                        sumatoria += i
+                    }
+                    document.querySelector('#resultadoPunto1').innerHTML = `<p>La sumatoria de los numeros del 1 al ${numero} es ${sumatoria}</p>`
+                })
+            </script>
+            <div class="col-4 d-flex justify-content-center align-items-center flex-column">
+                <h4>Punto 2 - Par impar</h4>
+                <form id="punto2">
+                    <input class="form-control w-100 border border-2" type="text" placeholder="Ingrese un numero" id="valorPunto2">
+                    <button type="submit" class="btn btn-dark">Calcular</button>
+                </form>
+                <div id="resultadoPunto2"></div>
+            </div>
+            <script>
+                document.querySelector('#punto2').addEventListener('submit', function(e) {
+                    e.preventDefault()
+                    let numero = parseInt(e.target.valorPunto2.value)
+                        // if(numero % 2 === 0){
+                        //     document.querySelector('#resultadoPunto2').innerHTML = `<p>El numero ${numero} es par</p>`
+                        // }else{
+                        //     document.querySelector('#resultadoPunto2').innerHTML = `<p>El numero ${numero} es impar</p>`
+                        // }
+                    let resultado = (numero % 2 === 0) ? 'par' : 'impar'
+                    document.querySelector('#resultadoPunto2').innerHTML = `<p>El numero ${numero} es ${resultado}</p>`
+                })
+            </script>
+            <div class="col-4 d-flex justify-content-center align-items-center flex-column">
+                <h4>Punto 3 - La pizzeria</h4>
+                <form id="punto3">
+                    <input class="form-control w-100 border border-2" type="text" placeholder="Ingrese un numero" id="edadp3">
+                    <select id="generoP3" class="form-control w-100 my-3 border border-2">
+                        <option value="mujer">Mujer</option>
+                        <option value="hombre">Hombre</option>
+                    </select>
+                    <button type="submit" class="btn btn-dark">Calcular</button>
+                </form>
+                <div id="resultadoPunto3"></div>
+            </div>
+            <script>
+                document.querySelector('#punto3').addEventListener('submit', function(e) {
+                    e.preventDefault()
+                    let edad = parseInt(e.target.edadp3.value)
+                    let genero = e.target.generoP3.value
+                    let resultado = ''
+                    if (edad <= 10 || edad >= 18) {
+                        if (genero == 'hombre') {
+                            if (edad <= 10) {
+                                resultado = 'Gana una pizza de 3 carnes y un juguito'
+                            } else if (edad >= 18) {
+                                resultado = 'Gana una pizza de 3 carnes y una pola'
+                            }
+                        } else if (genero == 'mujer') {
+                            if (edad <= 10) {
+                                resultado = 'Gana una pizza hawaina y un juguito'
+                            } else if (edad >= 18) {
+                                resultado = 'Gana una pizza hawaina y una pola'
+                            }
+                        }
+                    } else {
+                        resultado = 'No gana nada'
+                    }
+                    document.querySelector('#resultadoPunto3').innerHTML = `<p>${resultado}</p>`
+                })
+            </script>
+            <div class="bg-warning col-4 d-flex justify-content-center align-items-center flex-column">
+                <h4>Punto 4 - Menu arrays V1</h4>
+                <ol id="menu"></ol>
+                <form id="punto4">
+                    <input class="form-control w-100 border border-2" type="text" placeholder="Ingrese un numero" id="valorPunto4">
+                    <button type="submit" class="btn btn-dark">Calcular</button>
+                </form>
+                <div id="resultadoPunto4"></div>
+            </div>
+            <script>
+                let menuPlatosV1 = ['Pasta', 'Pescado', 'Carne', 'Pollo', 'Sopa']
+                let menuPlatosPreciosV1 = [10000, 15000, 20000, 12000, 8000]
+                let menuDiv = document.querySelector('#menu')
+                menuPlatosV1.forEach((valor, posicion) => {
+                    menuDiv.innerHTML += `<li>${valor} - ${menuPlatosPreciosV1[posicion]}</li>`
+                });
+                let totalPago = 0
+                document.querySelector("#punto4").addEventListener('submit', function(e) {
+                    e.preventDefault()
+                    let plato = e.target.valorPunto4.value
+                    let posicionPrecio = menuPlatosV1.indexOf(plato)
+
+                    if (plato != 'pagar') {
+                        if (posicionPrecio == -1) {
+                            document.querySelector('#resultadoPunto4').innerHTML = `<p>El plato ${plato} no se encuentra en el menu</p>`
+                        } else {
+                            totalPago = totalPago + menuPlatosPreciosV1[posicionPrecio]
+                        }
+                    } else {
+                        if (totalPago > 0) {
+                            document.querySelector('#resultadoPunto4').innerHTML = `<p>El total de la cuenta es ${totalPago}</p>`
+                        } else {
+                            document.querySelector('#resultadoPunto4').innerHTML = `<p>Toca comprar cosas primero</p>`
+                        }
+                    }
+
+                })
+            </script>
+            <div class="col-4 d-flex justify-content-center align-items-center flex-column">
+                <h4>Punto 4 - Menu arrays V2</h4>
+                <ol id="menuV2"></ol>
+                <form id="punto4V2">
+                    <input class="form-control w-100 border border-2" type="text" placeholder="Ingrese un numero" id="valorPunto4V2">
+                    <button type="submit" class="btn btn-dark">Calcular</button>
+                </form>
+                <div id="resultadoPunto4V2"></div>
+            </div>
+            <script>
+                let menuV2 = [{
+                    plato: 'Pasta',
+                    precio: 10000
+                }, {
+                    plato: 'Pescado',
+                    precio: 15000
+                }, {
+                    plato: 'Carne',
+                    precio: 20000
+                }, {
+                    plato: 'Pollo',
+                    precio: 12000
+                }, {
+                    plato: 'Sopa',
+                    precio: 8000
+                }]
+
+                for (const platico of menuV2) {
+                    document.querySelector('#menuV2').innerHTML += `<li>${platico.plato} - ${platico.precio}</li>`
+
+                }
+
+                let valorMenuV2 = 0
+                document.querySelector("#punto4V2").addEventListener('submit', function(e) {
+                    e.preventDefault()
+                    let plato = e.target.valorPunto4V2.value
+                    if (plato != 'pagar') {
+                        let platoEncontrado = menuV2.find((valor) => valor.plato == plato)
+                        valorMenuV2 = (platoEncontrado != undefined) ? valorMenuV2 + parseInt(platoEncontrado.precio) : '';
+                        (platoEncontrado == undefined) ? document.querySelector('#resultadoPunto4V2').innerHTML = `<p>El plato ${plato} no se encuentra en el menu</p>`: ''
+                    } else {
+                        if (valorMenuV2 > 0) {
+                            document.querySelector('#resultadoPunto4V2').innerHTML = `<p>El total de la cuenta es ${valorMenuV2}</p>`
+                        } else {
+                            document.querySelector('#resultadoPunto4V2').innerHTML = `<p>Toca comprar cosas primero</p>`
+                        }
+                    }
+                })
+            </script>
+            <div class="col-4 d-flex justify-content-center align-items-center flex-column mt-4">
+                <h4>Punto 5 - Tabla de multiplicar</h4>
+                <form id="punto5">
+                    <input class="form-control w-100 border border-2" type="text" placeholder="Ingrese un numero" id="valorTabla">
+                    <input class="form-control w-100 border border-2" type="text" placeholder="Ingrese el limite" id="limiteTabla">
+                    <button type="submit" class="btn btn-dark">Calcular</button>
+                </form>
+                <div id="resultadoPunto5"></div>
+            </div>
+            <script>
+                document.querySelector('#punto5').addEventListener('submit', function(e) {
+                    e.preventDefault()
+                    document.querySelector('#resultadoPunto5').innerHTML = ''
+                    let numero = parseInt(e.target.valorTabla.value)
+                    let limite = parseInt(e.target.limiteTabla.value)
+                    let resultado = ''
+                    if (limite != '') {
+                        for (let i = 1; i <= limite; i++) {
+                            resultado += `<p>${numero} x ${i} = ${numero * i}</p>`
+                        }
+                    }
+                    document.querySelector('#resultadoPunto5').innerHTML = resultado
+                })
+            </script>
+            <div class="col-4 mt-4 d-flex justify-content-center align-items-center flex-column">
+                <h4>Punto 6 - Descuento de matricula</h4>
+                <form id="punto6">
+                    <input class="form-control w-100 border border-2" type="text" placeholder="Ingrese el promedio" id="valorPunto6">
+                    <button type="submit" class="btn btn-dark">Calcular</button>
+                </form>
+                <div id="resultadoPunto6"></div>
+            </div>
+            <script>
+                document.querySelector('#punto6').addEventListener('submit', function(e) {
+                    e.preventDefault()
+                    let promedio = parseFloat(e.target.valorPunto6.value)
+                    let valorMatricula = 1000000
+                    if (promedio < 3) {
+                        document.querySelector('#resultadoPunto6').innerHTML = `<p>No tiene ningun descuento por vago</p>`
+                    } else if (promedio >= 3 && promedio < 4) {
+                        document.querySelector('#resultadoPunto6').innerHTML = `<p>El descuento es del 5% y el valor a pagar es ${valorMatricula - (valorMatricula * 0.05)}</p>`
+                    } else if (promedio >= 4 && promedio <= 5) {
+                        document.querySelector('#resultadoPunto6').innerHTML = `<p>El descuento es del 50% y el valor a pagar es ${valorMatricula - (valorMatricula * 0.5)}</p>`
+                    } else {
+                        document.querySelector('#resultadoPunto6').innerHTML = `<p>El promedio no es valido</p>`
+                    }
+                })
+            </script>
+        </div>
+    </section>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz" crossorigin="anonymous"></script>
+</body>
+
+</html>
