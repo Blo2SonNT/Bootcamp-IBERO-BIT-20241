@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+
+    <section id="infoAPI"></section>
+
+    <script>
+        let consumo = fetch('http://localhost:3000/api/prueba/pepe')
+            .then(response => response.json())
+            .then(data => {
+                console.log(data);
+                let infoAPI = document.getElementById('infoAPI');
+                infoAPI.innerHTML = `
+                <h1>${data.nombre} ${data.apellido}</h1>
+                <p>${data.edad}</p>
+                <p>${data.estado_civil}</p>
+            `;
+            })
+    </script>
+
+</body>
+
+</html>

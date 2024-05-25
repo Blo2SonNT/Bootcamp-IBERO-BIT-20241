@@ -10,7 +10,7 @@ class TeclaPiano {
     }
 
     reproducirSonido() {
-        let audio = new Audio(`audio/${this.nota}`);
+        let audio = new Audio(`../audio/${this.nota}`);
         audio.play();
     }
 }
@@ -27,6 +27,7 @@ let teclasPiano = [
     new TeclaPiano('nota8.mp3', 'k'),
 ];
 
+console.log(teclasPiano);
 
 let pianoContainer = document.querySelector('#piano');
 teclasPiano.forEach(tecla => {
@@ -35,22 +36,14 @@ teclasPiano.forEach(tecla => {
 
 
 document.addEventListener('keydown', (evento) => {
-    let cambioTecla = evento.key.toLowerCase();
-    let accion = teclasPiano.find(gamin => gamin.tecla == cambioTecla);
+    let accion = teclasPiano.find(gamin => gamin.tecla === evento.key);
     if (accion !== undefined) {
+        let numeroRandom = Math.floor(Math.random() * 100);
+        let numeroRedondeado = Math.floor(numeroRandom / 10) * 10;
         accion.reproducirSonido();
-        accion.elemento.classList.add('tecla-accion')
+        accion.elemento.classList.add(`color${numeroRedondeado}`)
         setTimeout(() => {
-            accion.elemento.classList.remove('tecla-accion')
+            accion.elemento.classList.remove(`color${numeroRedondeado}`)
         }, 100);
     }
 })
-
-
-// document.addEventListener('keyup', (evento) => {
-//     let cambioTecla = evento.key.toLowerCase();
-//     let accion = teclasPiano.find(gamin => gamin.tecla == cambioTecla);
-//     if (accion !== undefined) {
-//         accion.elemento.classList.remove('tecla-accion')
-//     }
-// })
