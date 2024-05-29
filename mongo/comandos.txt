@@ -1,0 +1,90 @@
+use nombre_bd
+*uso de una base de datos especifica
+
+
+show dbs || show databases
+*muestra todas las bases de datos almacenadas
+
+
+*insertOne || insertMany
+db.directores.insertOne( { nombre: "Stiven esa cosa", edad: 65, nacionalidad: "Veneco", vivo: true } )
+
+db.directores.insertMany( [ 
+    {
+        nombre: "Cristopher Nolan", 
+        edad: 53, 
+        nacionalidad: "colombiana", 
+        vivo: true, 
+        correo: "cris@nolan.org"
+    }, 
+    {
+        edad: 2, 
+        nacionalidad: "colombofrancesa", 
+        nombre: "dago garcia"
+    } 
+] )
+
+
+*busqueda FIND
+ db.directores.find()
+ db.directores.find( {nacionalidad: "colombiana"} )
+  db.directores.find( {nacionalidad: "colombiana"}, { nombre: 1, correo: 0, _id: 0 } )
+
+* aggregate
+
+
+
+* borrar documentos - DELETE
+db.directores.deleteMany({ edad: 65 })
+db.directores.deleteOne({ edad: 65 })
+
+
+* actualizar documentos - UPDATE
+
+db.directores.updateOne({ nacionalidad: "colombiana" }, { $set: { vivo: false } })
+db.directores.updateMany({ nacionalidad: "colombiana" }, { $set: { vivo: false } })
+
+
+
+
+
+
+
+* operador AND
+
+db.directores.find( 
+    { 
+        $and: 
+        [ 
+            { edad : { $gte: 15 } }, 
+            { edad: { $lte: 53 } }
+        ] 
+    } 
+)
+
+* operador OR
+db.directores.find( 
+    { 
+        $or: 
+        [ 
+            { nacionalidad : 'colombiana'  }, 
+            { nacionalidad: 'colombofrancesa' }
+        ] 
+    } 
+)
+
+* operador IN
+db.directores.find(
+    { nacionalidad: { $in: ['colombiana', 'colombofrancesa'] } }
+)
+
+*operador NIN
+db.directores.find(
+    { nacionalidad: { $nin: ['colombiana', 'colombofrancesa'] } }
+)
+
+* Busqueda por coincidencia
+db.documentos.find({"name": /desarrolladores/})  ---> coincidencia
+db.documentos.find({"name": /^Desarrolladores/})  ---> coincidencia empezando
+db.documentos.find({"name": /desarrolladores$/}) ---> coincidencia con finalizacion
+db.documentos.find({"name": /desarrolladores/i})  ---> coincidencia insensible a mayusculas o minusculas

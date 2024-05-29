@@ -4,7 +4,7 @@
     "description": "Esta api sera enfocada a la creacion de una pagina que visualizara peliculas",
     "main": "index.js",
     "scripts": {
-        "dev": "nodemon ."
+        "pepe": "nodemon ."
     },
     "author": "Miguel Nieto",
     "license": "ISC",
