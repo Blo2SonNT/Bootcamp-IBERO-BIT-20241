@@ -1,3 +1,8 @@
+exports.crearPelicula = (req, res) => {
+    console.log(req.body);
+    res.send("Estamos creando algo..."); //enviamos la información
+}
+
 exports.consultarPeliculas = (req, res) => {
     let info = [{
             nombre: 'Iron Man',
@@ -31,9 +36,4 @@ exports.actualizarPelicula = (req, res) => {
 
 exports.borrarPelicula = (req, res) => {
     res.send("Estamos borrando algo..."); //enviamos la información
-}
-
-exports.crearPelicula = (req, res) => {
-    console.log(req.body);
-    res.send("Estamos creando algo..."); //enviamos la información
 }

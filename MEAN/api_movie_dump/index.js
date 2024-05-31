@@ -1,6 +1,9 @@
 const express = require('express'); //llamamos a Express
+const conectarDB = require('./config/db'); //llamamos a la conexión de la base de datos
 const cors = require('cors'); //llamamos a Cors
 const app = express(); //definimos una instancia de express
+
+conectarDB(); //conectamos la base de datos
 
 app.use(cors()) //usamos cors
 app.use(express.json()) //usamos json
