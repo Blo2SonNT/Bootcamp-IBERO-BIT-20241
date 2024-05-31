@@ -1,6 +1,15 @@
-exports.crearPelicula = (req, res) => {
-    console.log(req.body);
-    res.send("Estamos creando algo..."); //enviamos la información
+//cSpell:disable
+const peliculaModel = require("../models/peliculas.model")
+
+exports.crearPelicula = async(req, res) => {
+    try {
+        let pelicula = new peliculaModel(req.body);
+        await pelicula.save();
+        res.status(200).send(pelicula);
+    } catch (error) {
+        console.log(error);
+        res.status(500).send("Hubo un problema al guardar la pelicula");
+    }
 }
 
 exports.consultarPeliculas = (req, res) => {
