@@ -1,9 +1,9 @@
-let Genero = require('../models/generos.model');
+let generoModel = require('../models/generos.model');
 
 
 exports.crearGenero = async(req, res) => {
     try {
-        let genero = new Genero(req.body)
+        let genero = new generoModel(req.body)
         await genero.save()
         res.status(200).send(genero)
     } catch (error) {
@@ -13,8 +13,14 @@ exports.crearGenero = async(req, res) => {
 }
 
 
-exports.consultarGeneros = (req, res) => {
-    res.send("Estos son mis generos..."); //enviamos la información
+exports.consultarGeneros = async(req, res) => {
+    try {
+        const generoData = await generoModel.find()
+        res.status(200).send(generoData)
+    } catch (error) {
+        console.log(error);
+        res.status(500).send("Hubo un problema al consultar los generos");
+    }
 }
 
 exports.consultarUnGenero = (req, res) => {
