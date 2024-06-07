@@ -1,0 +1,19 @@
+* COMANDO PARA INSTALAR ANGULAR EN EL EQUIPO
+    npm i -g @angular/cli
+    ! Solo se debe de correr una unica vez por maquina a no ser de que se quiera actualizar el CLI de angular
+
+
+* COMNANDO PARA CREAR UN PROYECTO
+    ng new nombre_proyecto
+
+
+* COMANDO PARA COMPILAR EL PROYECTO
+    ng serve -o
+    ng serve
+    ! la bandera -o sirve para indicarle que debe de abrir el proyecto en el navegador
+
+
+* COMANDO PARA CREAR COMPONENTES
+    ng g c components/nombre-componente
+    ng generate component components/nombre-componente
+    ! Cualquiera de los dos

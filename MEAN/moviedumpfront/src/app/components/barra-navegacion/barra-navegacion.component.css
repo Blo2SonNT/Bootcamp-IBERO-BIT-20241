@@ -1,0 +1,18 @@
+@font-face {
+    font-family: 'genty';
+    src: url('/assets/fonts/GentyDemo_Regular.ttf');
+}
+
+.banner-pagina {
+    background-image: url('/assets/img/fondo-banner.jpg');
+    background-size: cover;
+    background-position: center;
+}
+
+.banner-pagina h1 {
+    font-family: 'genty';
+}
+
+.imgLogo {
+    width: 6%;
+}
