@@ -1,8 +1,12 @@
 import { Routes } from '@angular/router';
 import { InicioComponent } from './components/inicio/inicio.component';
-import { ProductosComponent } from './components/productos/productos.component';
+import { InicioadminComponent } from './components/admin/inicioadmin/inicioadmin.component';
+import { GestionPeliculasComponent } from './components/admin/gestion-peliculas/gestion-peliculas.component';
+
+const tituloProyecto:string = "MovieDump"
 
 export const routes: Routes = [
-    { path:'', component: InicioComponent },
-    { path:'mis-productos', component: ProductosComponent }
+    { path:'', title: `Inicio | ${tituloProyecto}`, component: InicioComponent },
+    { path: 'admin', title: `Administración ${tituloProyecto}`, component: InicioadminComponent},
+    { path: 'admin/lista-peliculas', component: GestionPeliculasComponent}
 ];
