@@ -1,0 +1,49 @@
+<form class="row g-3" [formGroup]="peliculaForm" (ngSubmit)="envioFormulario()">
+    <div class="col-md-6">
+        <label for="titulo" class="form-label">Titulo</label>
+        <input type="text" class="form-control" id="titulo" formControlName="titulo">
+    </div>
+    <div class="col-md-6">
+        <label for="genero" class="form-label">Genero</label>
+        <select id="genero" class="form-select" formControlName="genero">
+            <option selected>Seleccione una...</option>
+            @for(genero of generos; track genero._id){
+                <option [value]="genero.nombre">{{genero.nombre}}</option>
+            }
+        </select>
+    </div>
+    <div class="col-6">
+        <label for="duracion" class="form-label">Duración</label>
+        <div class="d-flex justify-content-center align-items-center">
+            <input type="number" min="1" class="form-control" id="horas" formControlName="hora">
+            <span class="fs-2 px-1">:</span>
+            <input type="number" min="0" max="59" class="form-control" id="minutos" formControlName="minuto">
+            <span class="fs-2 px-1">:</span>
+            <input type="number" min="0" max="59" class="form-control" id="segundos" formControlName="segundo">
+        </div>
+    </div>
+    <div class="col-6">
+        <label for="director" class="form-label">Director</label>
+        <input type="text" class="form-control" formControlName="director" id="director">
+    </div>
+    <div class="col-md-12">
+        <label for="imagen" class="form-label">Imagen</label>
+        <input type="text" class="form-control" formControlName="imagen" id="imagen">
+    </div>
+    <div class="col-md-12">
+        <label for="clasificacion" class="form-label">Clasificación</label>
+        <select id="clasificacion" class="form-select" formControlName="clasificacion">
+            <option selected>Seleccione una...</option>
+            <option value="SU">SU - Apto par todo publico</option>
+            <option value="A">A - Apto para adolescentes y niños</option>
+            <option value="BO">BO - Bajo supervision responsable</option>
+            <option value="R">R - Para mayores de 17 años</option>
+            <option value="D">D - Contenido para adultos</option>
+            <option value="21">21 - Para mayores de 21 años</option>
+        </select>
+    </div>
+    <input type="text" placeholder="misterioooo">
+    <div class="col-12">
+        <button type="submit" class="btn btn-primary">Registrar</button>
+    </div>
+</form>

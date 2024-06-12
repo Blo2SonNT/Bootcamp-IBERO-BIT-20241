@@ -1,14 +1,18 @@
-<section>
-    <h1>Gestión de Películas</h1>
+<section class="pt-5 px-3">
+    <div class="d-flex justify-content-between">
+        <h1>Gestión de Películas</h1>
+        <button class="btn btn-dark" data-bs-toggle="modal" data-bs-target="#modalBtnPeliculas">Crear película</button>
+    </div>
     <hr>
     <div>
-        <table class="table">
+        <table class="table align-middle">
             <thead>
                 <tr>
                     <th scope="col">Nombre</th>
                     <th scope="col">Genero</th>
                     <th scope="col">Imagen</th>
                     <th scope="col">Duración</th>
+                    <th scope="col">Activa</th>
                     <th scope="col">Acciones</th>
                 </tr>
             </thead>
@@ -16,14 +20,35 @@
                 <tr>
                     <td>Iron man</td>
                     <td>Acción</td>
-                    <td><img src="https://via.placeholder.com/100x100" alt=""></td>
+                    <td><img src="https://via.placeholder.com/50x50" alt=""></td>
                     <td>2h 30m</td>
                     <td>
-                        <button class="btn btn-primary">Editar</button>
-                        <button class="btn btn-danger">Eliminar</button>
+                        <div class="form-check form-switch">
+                            <input class="form-check-input" type="checkbox" role="switch" id="flexSwitchCheckDefault">
+                        </div>
+                    </td>
+                    <td>
+                        <i class="fa-solid fa-pencil px-4 py-2 bg-warning mx-1 rounded"></i>
+                        <i class="fa-solid fa-trash px-4 py-2 bg-danger mx-1 rounded"></i>
                     </td>
                 </tr>
             </tbody>
         </table>
     </div>
 </section>
+
+
+
+<div class="modal fade" id="modalBtnPeliculas" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="modalBtnPeliculasLabel" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h1 class="modal-title fs-5" id="modalBtnPeliculasLabel">Modal title</h1>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body">
+                <app-formulario-peliculas></app-formulario-peliculas>
+            </div>
+        </div>
+    </div>
+</div>

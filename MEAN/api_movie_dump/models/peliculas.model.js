@@ -17,10 +17,15 @@ const PeliculasSchema = mongoose.Schema({
         type: String,
         required: true
     },
-    clasificacionR: {
-        type: Boolean,
+    clasificacion: {
+        type: String,
         required: true,
         default: false
+    },
+    imagen: {
+        type: String,
+        required: true,
+        default: "https://via.placeholder.com/50x50"
     }
 }, {
     timestamps: true,
