@@ -1,8 +1,9 @@
+//cSpell:disable
 import { CommonModule } from '@angular/common';
 import { Component } from '@angular/core';
 import { FormBuilder, FormGroup, ReactiveFormsModule, Validators } from '@angular/forms';
 import { ConsumoApiService } from '../../../services/consumo-api.service';
-
+import Swal from 'sweetalert2'
 @Component({
     selector: 'app-formulario-peliculas',
     standalone: true,
@@ -45,18 +46,31 @@ export class FormularioPeliculasComponent {
         })
     }
 
-    envioFormulario(){
-        let info = {
-            titulo: this.peliculaForm.get('titulo')?.value,
-            genero: this.peliculaForm.get('genero')?.value,
-            duracion: `${this.peliculaForm.get('hora')?.value}:${this.peliculaForm.get('minuto')?.value}:${this.peliculaForm.get('segundo')?.value}`,
-            director: this.peliculaForm.get('director')?.value,
-            imagen: this.peliculaForm.get('imagen')?.value,
-            clasificacion: this.peliculaForm.get('clasificacion')?.value
+    envioFormulario() {
+        console.log(this.peliculaForm.value);
+
+        if (this.peliculaForm.valid) {
+            let info = {
+                titulo: this.peliculaForm.get('titulo')?.value,
+                genero: this.peliculaForm.get('genero')?.value,
+                duracion: `${this.peliculaForm.get('hora')?.value}:${this.peliculaForm.get('minuto')?.value}:${this.peliculaForm.get('segundo')?.value}`,
+                director: this.peliculaForm.get('director')?.value,
+                imagen: this.peliculaForm.get('imagen')?.value,
+                clasificacion: this.peliculaForm.get('clasificacion')?.value
+            }
+            this._consumoApi.postPelicula(info).subscribe(data => {
+                Swal.fire({
+                    title: "Pelicula agregada",
+                    icon: "success"
+                });
+            })
+        } else {
+            Swal.fire({
+                title: "Formulario inválido",
+                text: "No ve que le estan saliendo errores? :v",
+                icon: "error"
+            });
         }
-        this._consumoApi.postPelicula(info).subscribe( data => {
-            alert('Pelicula creada')
-        })
     }
 
 }
