@@ -9,11 +9,15 @@ const usuarioController = require('../controllers/usuario.controller')
 router.post('/crear-pelicula', peliculaController.crearPelicula)
 router.get('/listar-peliculas', peliculaController.consultarPeliculas)
 router.get('/buscar-pelicula/:busqueda', peliculaController.consultarUnaPelicula)
+    // router.get('/buscar-pelicula-FIX/:id', peliculaController.consultarUnaPeliculaFIX)
 router.delete('/borrar-pelicula/:id', peliculaController.borrarPelicula)
 router.put('/actualizar-pelicula/:id', peliculaController.actualizarPelicula)
 
 router.post('/crear-genero', generoController.crearGenero)
 router.get('/listar-generos', generoController.consultarGeneros)
+router.delete('/borrar-genero/:id', generoController.borrarGenero)
+router.get('/buscar-genero/:id', generoController.consultarUnGenero)
+
 
 router.post('/crear-usuario', usuarioController.crearUsuario)
 router.get('/listar-usuarios', usuarioController.consultarUsuarios)

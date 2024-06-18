@@ -1,5 +1,5 @@
 //cSpell:disable
-import { Component } from '@angular/core';
+import { Component, Input, SimpleChanges } from '@angular/core';
 import { FormBuilder, FormGroup, ReactiveFormsModule, Validators } from '@angular/forms';
 import { ConsumoApiService } from '../../../services/consumo-api.service';
 import { CommonModule } from '@angular/common';
@@ -16,12 +16,30 @@ import Swal from 'sweetalert2'
     styleUrl: './formulario-generos.component.css'
 })
 export class FormularioGenerosComponent {
+
+    @Input() idGeneroConsulta: string = "";
+
     formGeneros: FormGroup;
 
     constructor(private fb: FormBuilder, private _consumoApi: ConsumoApiService) {
         this.formGeneros = this.fb.group({
             nombre: ['', [Validators.required, Validators.minLength(3), Validators.maxLength(20)]]
         });
+    }
+
+    ngOnChanges(changes: SimpleChanges) {
+        if (this.idGeneroConsulta != "") {
+            this.idGeneroActualizacion(this.idGeneroConsulta);
+        }
+    }
+
+
+    idGeneroActualizacion(id: string) {
+        console.log('id obtenido en hijo:', id);
+        this._consumoApi.getGenero(id).subscribe((data: any) => {
+            console.log(data);
+            this.formGeneros.get('nombre')?.setValue(data.nombre);
+        })
     }
 
     enviarInformacion() {

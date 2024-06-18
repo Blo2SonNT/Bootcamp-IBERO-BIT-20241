@@ -12,6 +12,21 @@ exports.crearPelicula = async(req, res) => {
     }
 }
 
+// exports.consultarUnaPeliculaFIX = async(req, res) => {
+//     try {
+//         let dataPelicula = await peliculaModel.findById(req.params.id)
+//         if (!dataPelicula) {
+//             return res.status(404).send({ msg: "No se encontró la pelicula" })
+//         } else {
+//             res.status(200).send(dataPelicula)
+//         }
+//     } catch (error) {
+//         console.log(error);
+//         res.status(500).send("Hubo un problema al consultar el genero");
+//     }
+// }
+
+
 exports.consultarPeliculas = async(req, res) => {
     try {
         const peliculasData = await peliculaModel.find()
@@ -26,15 +41,23 @@ exports.consultarUnaPelicula = async(req, res) => {
     //.find({nombre: /dead/i })
     let regexIdMongo = /^[0-9a-fA-F]{24}$/;
     let query = {}
+    let busquedaXId = false;
     if (regexIdMongo.test(req.params.busqueda)) {
         query = { _id: req.params.busqueda }
+        busquedaXId = true;
     } else {
         query = { titulo: new RegExp(req.params.busqueda, 'i') };
     }
     try {
         let peliculaData = await peliculaModel.find(query)
         if (peliculaData.length > 0) {
-            res.status(200).send({ data: peliculaData })
+            if (busquedaXId) {
+                // cuando es solo una busqueda por id, se envia solo el primer elemento como resultado sin el arreglo y sin objeto inicializado
+                peliculaData = peliculaData[0];
+                res.status(200).send(peliculaData)
+            } else {
+                res.status(200).send({ data: peliculaData })
+            }
         } else {
             res.status(404).send({ mensaje: "No se encontró la pelicula", data: [] })
         }

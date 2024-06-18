@@ -1,7 +1,8 @@
+//cSpell:disable
 import { Component } from '@angular/core';
 import { FormularioGenerosComponent } from '../formulario-generos/formulario-generos.component';
 import { ConsumoApiService } from '../../../services/consumo-api.service';
-
+import Swal from 'sweetalert2'
 @Component({
     selector: 'app-gestion-generos',
     standalone: true,
@@ -14,17 +15,45 @@ import { ConsumoApiService } from '../../../services/consumo-api.service';
 export class GestionGenerosComponent {
 
     infoGeneros: any[] = [];
+    idGenero: string = "";
 
-    constructor( private _consumoApi: ConsumoApiService ){}
+    constructor(private _consumoApi: ConsumoApiService) { }
 
-    ngOnInit():void{
+    ngOnInit(): void {
         this.obtenerGeneros();
     }
 
-    obtenerGeneros(){
-        this._consumoApi.getGeneros().subscribe((data:any) => {
+
+    obtenerGeneros() {
+        this._consumoApi.getGeneros().subscribe((data: any) => {
             this.infoGeneros = data
         });
+    }
+
+    eliminarGenero(id: string) {
+        Swal.fire({
+            title: "Esta seguro de eliminar el genero",
+            icon: "question",
+            showCancelButton: true,
+            confirmButtonColor: "#3085d6",
+            cancelButtonColor: "#d33",
+            confirmButtonText: "Eliminar",
+            cancelButtonText: "Cancelar"
+        }).then((result) => {
+            if (result.isConfirmed) {
+                this._consumoApi.deleteGeneros(id).subscribe((data: any) => {
+                    this.obtenerGeneros();
+                });
+                Swal.fire({
+                    title: "Genero eliminado correctamente!",
+                });
+            }
+        });
+    }
+
+    alimentarFormulario(id: string) {
+        this.idGenero = id;
+        console.log('id desde padre', this.idGenero)
     }
 
 }

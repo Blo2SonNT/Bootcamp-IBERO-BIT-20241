@@ -23,14 +23,35 @@ exports.consultarGeneros = async(req, res) => {
     }
 }
 
-exports.consultarUnGenero = (req, res) => {
-    res.send("Este es mi genero xxxxxx"); //enviamos la información
+exports.consultarUnGenero = async(req, res) => {
+    try {
+        let dataGenero = await generoModel.findById(req.params.id)
+        if (!dataGenero) {
+            return res.status(404).send({ msg: "No se encontró el genero" })
+        } else {
+            res.status(200).send(dataGenero)
+        }
+    } catch (error) {
+        console.log(error);
+        res.status(500).send("Hubo un problema al consultar el genero");
+    }
 }
 
 exports.actualizarGenero = (req, res) => {
     res.send("Estamos actualizando el genero..."); //enviamos la información
 }
 
-exports.borrarGenero = (req, res) => {
-    res.send("Estamos borrando un genero..."); //enviamos la información
+exports.borrarGenero = async(req, res) => {
+    try {
+        let dataGenero = await generoModel.findById(req.params.id)
+        if (!dataGenero) {
+            return res.status(404).send("No se encontró el genero")
+        } else {
+            await generoModel.findByIdAndDelete(req.params.id)
+            res.status(200).send({ msg: "Genero eliminado correctamente" })
+        }
+    } catch (error) {
+        console.log(error);
+        res.status(500).send("Hubo un problema al eliminar el genero");
+    }
 }

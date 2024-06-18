@@ -1,6 +1,6 @@
 //cSpell:disable
 import { CommonModule } from '@angular/common';
-import { Component } from '@angular/core';
+import { Component, Input, SimpleChanges } from '@angular/core';
 import { FormBuilder, FormGroup, ReactiveFormsModule, Validators } from '@angular/forms';
 import { ConsumoApiService } from '../../../services/consumo-api.service';
 import Swal from 'sweetalert2'
@@ -15,6 +15,9 @@ import Swal from 'sweetalert2'
     styleUrl: './formulario-peliculas.component.css'
 })
 export class FormularioPeliculasComponent {
+
+    @Input() idPeliculaConsulta: string = "";
+
     generos: any = [
         { _id: 15534, nombre: 'Acción' },
         { _id: 223423, nombre: 'Aventura' },
@@ -27,14 +30,13 @@ export class FormularioPeliculasComponent {
     ]
 
     peliculaForm: FormGroup
-    regexAlfanumerico = /^[a-zA-Z0-9]+$/
+    regexAlfanumerico = /^[a-zA-Z0-9 ñÑ]+$/
 
     constructor(private fb: FormBuilder, private _consumoApi: ConsumoApiService) {
         this.peliculaForm = this.fb.group({
             titulo: ['', [
                 Validators.required,
-                Validators.minLength(3),
-                Validators.pattern(this.regexAlfanumerico)
+                Validators.minLength(3)
             ]],
             genero: ['', Validators.required],
             hora: ['1', [Validators.required, Validators.min(1)]],
@@ -43,6 +45,28 @@ export class FormularioPeliculasComponent {
             director: ['', Validators.required],
             imagen: ['', Validators.required],
             clasificacion: ['', Validators.required]
+        })
+    }
+
+    ngOnChanges(changes: SimpleChanges) {
+        if (this.idPeliculaConsulta != '') {
+            if (changes['idPeliculaConsulta']) {
+                this.alimentarFormulario(changes['idPeliculaConsulta'].currentValue)
+            }
+        }
+    }
+
+    alimentarFormulario(id: string) {
+        this._consumoApi.getPelicula(id).subscribe((data: any) => {
+            console.log(data)
+            this.peliculaForm.get('titulo')?.setValue(data.titulo);
+            this.peliculaForm.get('genero')?.setValue(data.genero);
+            this.peliculaForm.get('hora')?.setValue(data.duracion.split(':')[0]);
+            this.peliculaForm.get('minuto')?.setValue(data.duracion.split(':')[1]);
+            this.peliculaForm.get('segundo')?.setValue(data.duracion.split(':')[2]);
+            this.peliculaForm.get('director')?.setValue(data.director);
+            this.peliculaForm.get('imagen')?.setValue(data.imagen);
+            this.peliculaForm.get('clasificacion')?.setValue(data.clasificacion);
         })
     }
 
@@ -61,8 +85,12 @@ export class FormularioPeliculasComponent {
             this._consumoApi.postPelicula(info).subscribe(data => {
                 Swal.fire({
                     title: "Pelicula agregada",
-                    icon: "success"
+                    icon: "success",
+                    showConfirmButton: false
                 });
+                setTimeout(() => {
+                    location.reload();
+                }, 2500);
             })
         } else {
             Swal.fire({
