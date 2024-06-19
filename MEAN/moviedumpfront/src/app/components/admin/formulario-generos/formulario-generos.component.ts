@@ -1,6 +1,6 @@
 //cSpell:disable
 import { Component, Input, SimpleChanges } from '@angular/core';
-import { FormBuilder, FormGroup, ReactiveFormsModule, Validators } from '@angular/forms';
+import { FormBuilder, FormControl, FormGroup, ReactiveFormsModule, Validators } from '@angular/forms';
 import { ConsumoApiService } from '../../../services/consumo-api.service';
 import { CommonModule } from '@angular/common';
 import Swal from 'sweetalert2'
@@ -18,6 +18,8 @@ import Swal from 'sweetalert2'
 export class FormularioGenerosComponent {
 
     @Input() idGeneroConsulta: string = "";
+    inputIDgenero = new FormControl();
+    textoBoton: string = "Guardar genero"
 
     formGeneros: FormGroup;
 
@@ -30,6 +32,7 @@ export class FormularioGenerosComponent {
     ngOnChanges(changes: SimpleChanges) {
         if (this.idGeneroConsulta != "") {
             this.idGeneroActualizacion(this.idGeneroConsulta);
+            this.textoBoton = "Actualizar genero"
         }
     }
 
@@ -43,28 +46,48 @@ export class FormularioGenerosComponent {
     }
 
     enviarInformacion() {
-        let erroresInputNombre: any = this.formGeneros.get('nombre')?.errors
-        console.log('erroresInputNombre:', erroresInputNombre)
 
-        if (erroresInputNombre == null) {
-            this._consumoApi.postGeneros(this.formGeneros.value).subscribe((data) => {
+        // let inputID = this.inputIDgenero.value;
+        // console.log('inputID:', inputID)
+
+        if (this.idGeneroConsulta != "") {
+            this._consumoApi.putGenero(this.idGeneroConsulta, this.formGeneros.value).subscribe((data) => {
                 console.log(data);
                 Swal.fire({
                     icon: "success",
-                    title: "Genero creado de manera exitosa",
+                    title: "Genero actualizado de manera exitosa",
                     showConfirmButton: false,
                     timer: 2000
                 });
                 setTimeout(() => {
                     location.reload();
                 }, 2000);
-            });
+            })
+
         } else {
-            Swal.fire({
-                title: "Formulario Invalido",
-                text: "Burro Bestia animal salvaje",
-                icon: "error"
-            });
+            let erroresInputNombre: any = this.formGeneros.get('nombre')?.errors
+            console.log('erroresInputNombre:', erroresInputNombre)
+
+            if (erroresInputNombre == null) {
+                this._consumoApi.postGeneros(this.formGeneros.value).subscribe((data) => {
+                    console.log(data);
+                    Swal.fire({
+                        icon: "success",
+                        title: "Genero creado de manera exitosa",
+                        showConfirmButton: false,
+                        timer: 2000
+                    });
+                    setTimeout(() => {
+                        location.reload();
+                    }, 2000);
+                });
+            } else {
+                Swal.fire({
+                    title: "Formulario Invalido",
+                    text: "Burro Bestia animal salvaje",
+                    icon: "error"
+                });
+            }
         }
     }
 

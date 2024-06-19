@@ -69,7 +69,7 @@ exports.consultarUnaPelicula = async(req, res) => {
 
 exports.actualizarPelicula = async(req, res) => {
     try {
-        const { titulo, genero, duracion, director, clasificacionR } = req.body;
+        const { titulo, genero, duracion, director, clasificacionR, imagen } = req.body;
         let peliculaData = await peliculaModel.findById(req.params.id)
 
         if (!peliculaData) {
@@ -80,6 +80,7 @@ exports.actualizarPelicula = async(req, res) => {
         peliculaData.titulo = titulo;
         peliculaData.genero = genero;
         peliculaData.duracion = duracion;
+        peliculaData.imagen = imagen;
         peliculaData.director = director;
         peliculaData.clasificacionR = clasificacionR;
 

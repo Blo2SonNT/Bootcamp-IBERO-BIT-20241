@@ -17,6 +17,8 @@ router.post('/crear-genero', generoController.crearGenero)
 router.get('/listar-generos', generoController.consultarGeneros)
 router.delete('/borrar-genero/:id', generoController.borrarGenero)
 router.get('/buscar-genero/:id', generoController.consultarUnGenero)
+router.put('/actualizar-genero/:id', generoController.actualizarGenero)
+
 
 
 router.post('/crear-usuario', usuarioController.crearUsuario)

@@ -2,20 +2,19 @@
 <form class="row g-3" [formGroup]="peliculaForm" (ngSubmit)="envioFormulario()">
     <div class="col-md-6">
         <label for="titulo" class="form-label">Titulo</label>
-        <input type="text" class="form-control" id="titulo" formControlName="titulo">
+        <input type="text" class="form-control" id="titulo" formControlName="titulo" />
         <!-- separacion -->
         @if(peliculaForm.get('titulo')?.invalid && peliculaForm.get('titulo')?.touched){
         <div class="text-danger fw-bold">El titulo no es valido</div>
         }
         <!-- separacion -->
-
     </div>
     <div class="col-md-6">
         <label for="genero" class="form-label">Genero</label>
         <select id="genero" class="form-select" formControlName="genero">
             <option selected>Seleccione una...</option>
             @for(genero of generos; track genero._id){
-                <option [value]="genero.nombre">{{genero.nombre}}</option>
+            <option [value]="genero.nombre">{{ genero.nombre }}</option>
             }
         </select>
         <!-- separacion -->
@@ -27,11 +26,11 @@
     <div class="col-6">
         <label for="duracion" class="form-label">Duración</label>
         <div class="d-flex justify-content-center align-items-center">
-            <input type="number" min="1" class="form-control" id="horas" formControlName="hora">
+            <input type="number" min="1" class="form-control" id="horas" formControlName="hora" />
             <span class="fs-2 px-1">:</span>
-            <input type="number" min="0" max="59" class="form-control" id="minutos" formControlName="minuto">
+            <input type="number" min="0" max="59" class="form-control" id="minutos" formControlName="minuto" />
             <span class="fs-2 px-1">:</span>
-            <input type="number" min="0" max="59" class="form-control" id="segundos" formControlName="segundo">
+            <input type="number" min="0" max="59" class="form-control" id="segundos" formControlName="segundo" />
         </div>
         <!-- separacion -->
         @if(peliculaForm.get('hora')?.invalid && peliculaForm.get('hora')?.touched){
@@ -49,7 +48,7 @@
     </div>
     <div class="col-6">
         <label for="director" class="form-label">Director</label>
-        <input type="text" class="form-control" formControlName="director" id="director">
+        <input type="text" class="form-control" formControlName="director" id="director" />
         <!-- separacion -->
         @if(peliculaForm.get('director')?.invalid && peliculaForm.get('director')?.touched){
         <div class="text-danger fw-bold">El director no es valido</div>
@@ -58,7 +57,7 @@
     </div>
     <div class="col-md-12">
         <label for="imagen" class="form-label">Imagen</label>
-        <input type="text" class="form-control" formControlName="imagen" id="imagen">
+        <input type="text" class="form-control" formControlName="imagen" id="imagen" />
         <!-- separacion -->
         @if(peliculaForm.get('imagen')?.invalid && peliculaForm.get('imagen')?.touched){
         <div class="text-danger fw-bold">La url de la imagen no es valida</div>
@@ -84,6 +83,6 @@
     </div>
     <!-- <input type="text" placeholder="misterioooo"> -->
     <div class="col-12">
-        <button type="submit" class="btn btn-primary" [disabled]="peliculaForm.invalid">Registrar</button>
+        <button type="submit" class="btn btn-primary" [disabled]="peliculaForm.invalid">{{ textoBoton }}</button>
     </div>
 </form>

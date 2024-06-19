@@ -3,6 +3,7 @@ import { Injectable } from '@angular/core';
 import { Pelicula } from '../models/pelicula.model';
 import { Genero } from '../models/generos.model';
 import { Observable } from 'rxjs';
+import { environment } from "../../environments/environment";
 
 
 @Injectable({
@@ -10,7 +11,7 @@ import { Observable } from 'rxjs';
 })
 export class ConsumoApiService {
 
-    urlAPI = 'http://localhost:3000/api/v1'
+    urlAPI = environment.baseApiUrl
 
     constructor(private http: HttpClient) { }
 
@@ -20,7 +21,6 @@ export class ConsumoApiService {
     postPelicula(dataPelicula: Pelicula) {
         return this.http.post(`${this.urlAPI}/crear-pelicula`, dataPelicula)
     }
-
 
     getPeliculas() {
         return this.http.get(`${this.urlAPI}/listar-peliculas`)
@@ -32,6 +32,10 @@ export class ConsumoApiService {
 
     deletePelicula(id: string) {
         return this.http.delete(`${this.urlAPI}/borrar-pelicula/${id}`)
+    }
+
+    putPelicula(id: string, dataPelicula: Pelicula) {
+        return this.http.put(`${this.urlAPI}/actualizar-pelicula/${id}`, dataPelicula)
     }
 
 
@@ -52,5 +56,9 @@ export class ConsumoApiService {
 
     deleteGeneros(id: string) {
         return this.http.delete(`${this.urlAPI}/borrar-genero/${id}`)
+    }
+
+    putGenero(id: string, dataGenero: Genero) {
+        return this.http.put(`${this.urlAPI}/actualizar-genero/${id}`, dataGenero)
     }
 }

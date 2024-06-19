@@ -2,12 +2,13 @@
 <form [formGroup]="formGeneros" (ngSubmit)="enviarInformacion()">
     <div class="mb-3">
         <label for="nombre" class="form-label">Nombre del genero</label>
-        <input type="text" class="form-control" id="nombre" formControlName="nombre">
+        <input type="text" class="form-control" id="nombre" formControlName="nombre" />
         <!-- separacion -->
         @if(formGeneros.get('nombre')?.invalid && formGeneros.get('nombre')?.touched){
         <div class="fw-bold text-danger">Nombre del genero invalido</div>
         }
         <!-- separacion -->
     </div>
-    <button type="submit" class="btn btn-primary">Guardar</button>
+    <input type="text" [formControl]="inputIDgenero" [value]="idGeneroConsulta" />
+    <button type="submit" class="btn btn-primary">{{ textoBoton }}</button>
 </form>

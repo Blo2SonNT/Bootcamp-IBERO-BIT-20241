@@ -1,7 +1,7 @@
 <section class="pt-5 px-3">
     <div class="d-flex justify-content-between">
         <h1>Gestión de Películas</h1>
-        <button class="btn btn-dark" data-bs-toggle="modal" data-bs-target="#modalBtnPeliculas">Crear película</button>
+        <button class="btn btn-dark" data-bs-toggle="modal" data-bs-target="#modalBtnPeliculas" (click)="ActualizarTitulo('Crear Pelicula')">Crear película</button>
     </div>
     <hr />
     <div>
@@ -29,7 +29,7 @@
                         </div>
                     </td>
                     <td>
-                        <i class="fa-solid fa-pencil px-4 py-2 bg-warning mx-1 rounded" data-bs-toggle="modal" data-bs-target="#modalBtnPeliculas" (click)="alimentarFormulario(pelicula._id)"></i>
+                        <i class="fa-solid fa-pencil px-4 py-2 bg-warning mx-1 rounded" data-bs-toggle="modal" data-bs-target="#modalBtnPeliculas" (click)="alimentarFormulario(pelicula._id, 'Modificar pelicula')"></i>
                         <i class="fa-solid fa-trash px-4 py-2 bg-danger mx-1 rounded" (click)="eliminarPelicula(pelicula._id)"></i>
                     </td>
                 </tr>
@@ -43,7 +43,7 @@
     <div class="modal-dialog modal-dialog-centered">
         <div class="modal-content">
             <div class="modal-header">
-                <h1 class="modal-title fs-5" id="modalBtnPeliculasLabel">Modal title</h1>
+                <h1 class="modal-title fs-5" id="modalBtnPeliculasLabel">{{ tituloModal }}</h1>
                 <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
             </div>
             <div class="modal-body">

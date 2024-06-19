@@ -17,6 +17,7 @@ import Swal from 'sweetalert2'
 export class FormularioPeliculasComponent {
 
     @Input() idPeliculaConsulta: string = "";
+    textoBoton: string = "Agregar Pelicula"
 
     generos: any = [
         { _id: 15534, nombre: 'Acción' },
@@ -52,6 +53,7 @@ export class FormularioPeliculasComponent {
         if (this.idPeliculaConsulta != '') {
             if (changes['idPeliculaConsulta']) {
                 this.alimentarFormulario(changes['idPeliculaConsulta'].currentValue)
+                this.textoBoton = "Actualizar Pelicula"
             }
         }
     }
@@ -72,8 +74,7 @@ export class FormularioPeliculasComponent {
 
     envioFormulario() {
         console.log(this.peliculaForm.value);
-
-        if (this.peliculaForm.valid) {
+        if (this.idPeliculaConsulta != '') {
             let info = {
                 titulo: this.peliculaForm.get('titulo')?.value,
                 genero: this.peliculaForm.get('genero')?.value,
@@ -82,9 +83,10 @@ export class FormularioPeliculasComponent {
                 imagen: this.peliculaForm.get('imagen')?.value,
                 clasificacion: this.peliculaForm.get('clasificacion')?.value
             }
-            this._consumoApi.postPelicula(info).subscribe(data => {
+
+            this._consumoApi.putPelicula(this.idPeliculaConsulta, info).subscribe((data) => {
                 Swal.fire({
-                    title: "Pelicula agregada",
+                    title: "Pelicula actualizada",
                     icon: "success",
                     showConfirmButton: false
                 });
@@ -93,11 +95,32 @@ export class FormularioPeliculasComponent {
                 }, 2500);
             })
         } else {
-            Swal.fire({
-                title: "Formulario inválido",
-                text: "No ve que le estan saliendo errores? :v",
-                icon: "error"
-            });
+            if (this.peliculaForm.valid) {
+                let info = {
+                    titulo: this.peliculaForm.get('titulo')?.value,
+                    genero: this.peliculaForm.get('genero')?.value,
+                    duracion: `${this.peliculaForm.get('hora')?.value}:${this.peliculaForm.get('minuto')?.value}:${this.peliculaForm.get('segundo')?.value}`,
+                    director: this.peliculaForm.get('director')?.value,
+                    imagen: this.peliculaForm.get('imagen')?.value,
+                    clasificacion: this.peliculaForm.get('clasificacion')?.value
+                }
+                this._consumoApi.postPelicula(info).subscribe(data => {
+                    Swal.fire({
+                        title: "Pelicula agregada",
+                        icon: "success",
+                        showConfirmButton: false
+                    });
+                    setTimeout(() => {
+                        location.reload();
+                    }, 2500);
+                })
+            } else {
+                Swal.fire({
+                    title: "Formulario inválido",
+                    text: "No ve que le estan saliendo errores? :v",
+                    icon: "error"
+                });
+            }
         }
     }
 

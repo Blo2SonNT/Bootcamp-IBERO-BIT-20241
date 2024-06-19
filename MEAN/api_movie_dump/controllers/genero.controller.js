@@ -37,8 +37,21 @@ exports.consultarUnGenero = async(req, res) => {
     }
 }
 
-exports.actualizarGenero = (req, res) => {
-    res.send("Estamos actualizando el genero..."); //enviamos la información
+exports.actualizarGenero = async (req, res) => {
+    try {
+		const { nombre } = req.body
+		let dataGenero = await generoModel.findById(req.params.id)
+		if(!dataGenero){
+			return res.status(404).send({msg: "genero no encontrado"})
+		}else{
+			dataGenero.nombre = nombre
+			await generoModel.findByIdAndUpdate(req.params.id, dataGenero)
+			return res.status(200).send({ mensaje: "Genero actualizado", dataGenero })
+		}
+	} catch (error) {
+		console.log(error);
+        res.status(500).send("Hubo un problema al consultar el genero");
+	}
 }
 
 exports.borrarGenero = async(req, res) => {

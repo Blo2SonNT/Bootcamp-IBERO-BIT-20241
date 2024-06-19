@@ -15,6 +15,7 @@ export class GestionPeliculasComponent {
 
     dataPeliculas!: any[]
     idPelicula: string = ""
+    tituloModal: string = "Crear Pelicula"
 
     constructor(private _consumoApi: ConsumoApiService) { }
 
@@ -54,8 +55,13 @@ export class GestionPeliculasComponent {
         });
     }
 
-    alimentarFormulario(id: string) {
+    alimentarFormulario(id: string, titulo: string) {
         this.idPelicula = id
+        this.tituloModal = titulo
+    }
+
+    ActualizarTitulo(titulo: string) {
+        this.tituloModal = titulo
     }
 
 }

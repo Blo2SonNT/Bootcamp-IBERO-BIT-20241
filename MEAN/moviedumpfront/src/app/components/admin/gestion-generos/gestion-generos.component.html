@@ -1,7 +1,7 @@
 <section class="pt-5 px-3">
     <div class="d-flex justify-content-between">
         <h1>Gestión de géneros</h1>
-        <button class="btn btn-dark" data-bs-toggle="modal" data-bs-target="#modalBtnPeliculas">Crear genero</button>
+        <button class="btn btn-dark" data-bs-toggle="modal" data-bs-target="#modalBtnPeliculas" (click)="cambiarTituloModal('Agregar Genero')">Crear genero</button>
     </div>
     <hr />
     <div>
@@ -17,7 +17,7 @@
                 <tr>
                     <td>{{ genero.nombre }}</td>
                     <td>
-                        <i class="fa-solid fa-pencil px-4 py-2 bg-warning mx-1 rounded" data-bs-toggle="modal" data-bs-target="#modalBtnPeliculas" (click)="alimentarFormulario(genero._id)"></i>
+                        <i class="fa-solid fa-pencil px-4 py-2 bg-warning mx-1 rounded" data-bs-toggle="modal" data-bs-target="#modalBtnPeliculas" (click)="alimentarFormulario(genero._id, 'Modificar Genero')"></i>
                         <i class="fa-solid fa-trash px-4 py-2 bg-danger mx-1 rounded" (click)="eliminarGenero(genero._id)"></i>
                     </td>
                 </tr>
@@ -31,7 +31,7 @@
     <div class="modal-dialog modal-dialog-centered">
         <div class="modal-content">
             <div class="modal-header">
-                <h1 class="modal-title fs-5" id="modalBtnPeliculasLabel">Registrar Genero</h1>
+                <h1 class="modal-title fs-5" id="modalBtnPeliculasLabel">{{ tituloModal }}</h1>
                 <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
             </div>
             <div class="modal-body">

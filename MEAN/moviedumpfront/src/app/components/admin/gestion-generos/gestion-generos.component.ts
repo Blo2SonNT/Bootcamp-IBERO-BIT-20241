@@ -16,6 +16,7 @@ export class GestionGenerosComponent {
 
     infoGeneros: any[] = [];
     idGenero: string = "";
+    tituloModal: string = "Agregar Genero";
 
     constructor(private _consumoApi: ConsumoApiService) { }
 
@@ -51,9 +52,14 @@ export class GestionGenerosComponent {
         });
     }
 
-    alimentarFormulario(id: string) {
+    alimentarFormulario(id: string, tituloModalAccion: string) {
         this.idGenero = id;
+        this.tituloModal = tituloModalAccion;
         console.log('id desde padre', this.idGenero)
+    }
+
+    cambiarTituloModal(titulo: string) {
+        this.tituloModal = titulo;
     }
 
 }
